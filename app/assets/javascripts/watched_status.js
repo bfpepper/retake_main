@@ -1,8 +1,30 @@
 $(document).ready(function(){
   $('#movie-list').on('click', '.mark-watched', changeWatchedStatus)
-  $('#movie-list').on('click', '.mark-unwatched', changeWatchedStatus)
+  $('.search-watched').on('click', getWatchedMovies)
+  $('.search-unwatched').on('click', getUnwatchedMovies)
 });
 
+function getWatchedMovies() {
+  $('#movie-list').children().each(function() {
+    var readStatus = $(this).find(".mark-watched").html();
+    if (readStatus.includes("Mark as Unwatched")) {
+      $(this).show()
+    }  else {
+      $(this).hide()
+    };
+  });
+}
+
+function getUnwatchedMovies() {
+  $('#movie-list').children().each(function() {
+    var readStatus = $(this).find(".mark-watched").html();
+    if (readStatus.includes("Mark as Watched")) {
+      $(this).show()
+    }  else {
+      $(this).hide()
+    };
+  });
+}
 function changeWatchedStatus() {
   var movieId = $(this).parent().parent()[0].rowIndex
   var currentStatus = $( '#watched-' + movieId )[0].innerText
