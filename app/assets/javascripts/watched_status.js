@@ -7,6 +7,11 @@ $(document).ready(function(){
 });
 
 function filterAlpha() {
+  var sorted = $('#movie-list').children().sort(function(a,b){
+      if(a.innerText.toLowerCase() < b.innerText.toLowerCase()) return -1;
+      if(a.innerText.toLowerCase() > b.innerText.toLowerCase()) return 1;
+      return 0;
+  })
   
 }
 
