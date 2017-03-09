@@ -1,0 +1,18 @@
+<% if current_user %>
+  <%= form_for @movie do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :note %>
+    <%= f.text_field :note %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
+
+<% if @movies %>
+  <% @movies.each do |movie| %>
+    <%= movie.title %></br>
+    <%= movie.note %></br>
+    <%= link_to "Edit", edit_movie_path(movie) %>
+    </br>
+  <% end %>
+<% end %>
