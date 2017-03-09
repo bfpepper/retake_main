@@ -2,7 +2,24 @@ $(document).ready(function(){
   $('#movie-list').on('click', '.mark-watched', changeWatchedStatus)
   $('.search-watched').on('click', getWatchedMovies)
   $('.search-unwatched').on('click', getUnwatchedMovies)
+  $('#movie-search').on('keyup', filterResults)
 });
+
+function filterResults(e) {
+  e.preventDefault();
+  var filter = $( "#movie-search" ).val().toLowerCase();
+  $("#movie-list").children().each(function(){
+
+    var title = $(this).find('.movie-title').text().toLowerCase();
+    var note = $(this).find('.movie-note').text().toLowerCase();
+
+    if (title.includes(filter) || note.includes(filter)) {
+      $(this).show()
+    } else {
+      $(this).hide()
+    };
+  });
+}
 
 function getWatchedMovies() {
   $('#movie-list').children().each(function() {
