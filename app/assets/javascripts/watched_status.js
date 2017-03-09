@@ -3,7 +3,12 @@ $(document).ready(function(){
   $('.search-watched').on('click', getWatchedMovies)
   $('.search-unwatched').on('click', getUnwatchedMovies)
   $('#movie-search').on('keyup', filterResults)
+  $('.search-alpha').on('click', filterAlpha)
 });
+
+function filterAlpha() {
+  
+}
 
 function filterResults(e) {
   e.preventDefault();
