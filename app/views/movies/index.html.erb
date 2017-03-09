@@ -9,7 +9,8 @@
 <% end %>
 
 <button type='button' class='search-watched'>Search for all watched movies</button></br>
-<button type='button' class='search-unwatched'>Search for all unwatched movies</button>
+<button type='button' class='search-unwatched'>Search for all unwatched movies</button></br>
+<input type="text" id="movie-search" placeholder="Search for movies..." />
 <table>
   <thead>
     <tr>
@@ -23,8 +24,8 @@
   <tbody id='movie-list'>
     <% if @movies %>
       <% @movies.each do |movie| %>
-        <tr class=<%= color_output(movie.watched) %>><td><%= movie.title %></td>
-        <td><%= movie.note %></td>
+        <tr class=<%= color_output(movie.watched) %>><td class='movie-title'><%= movie.title %></td>
+        <td class='movie-note'><%= movie.note %></td>
         <td id=<%= "watched-#{movie.id}" %>><%= movie.watched %></td>
         <td><%= link_to "Edit", edit_movie_path(movie) %></td>
         <% if movie.watched == false %>
