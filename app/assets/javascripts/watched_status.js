@@ -7,13 +7,23 @@ $(document).ready(function(){
 });
 
 function filterAlpha() {
-  var sorted = $('#movie-list').children().sort(function(a,b){
-      if(a.innerText.toLowerCase() < b.innerText.toLowerCase()) return -1;
-      if(a.innerText.toLowerCase() > b.innerText.toLowerCase()) return 1;
-      return 0;
+  return $.ajax({
+    url: "/api/v1/movies/",
+    method: 'GET'
+  }).done(function(data){
+    $('#movie-list').html('')
+    for (var i = 0; i < data.length; i++) {
+      $('#movie-list').append('<tr class=' + data[i].watched + '><td class="movie-title">' + data[i].title + '</td>' +
+                              '<td class="movie-note">' + data[i].note + '</td>' +
+                              '<td id=watched-' + data[i].id + '>' + data[i].watched + '</td>' +
+                              '<td><a href="/movies/' + data[i].id + '/edit">Edit</a></td>' +
+                              '<td><button type="button" class="mark-watched" id=' + data[i].id + '>Mark as Watched</button></td>');
+    }
+  }).fail(function(error){
+    console.error(err);
   })
-  
 }
+
 
 function filterResults(e) {
   e.preventDefault();
