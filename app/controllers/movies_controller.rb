@@ -2,7 +2,9 @@ class MoviesController < ApplicationController
 
   def index
     @movie = Movie.new
-    @movies = Movie.where(user_id: current_user.id)
+    if current_user
+      @movies = Movie.where(user_id: current_user.id).order(:id)
+    end
   end
 
   def create
@@ -33,7 +35,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :note)
+    params.require(:movie).permit(:title, :note, :user_id, :watched)
   end
 
 end
