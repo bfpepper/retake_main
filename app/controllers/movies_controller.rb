@@ -9,6 +9,8 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
+    @movie.title = params[:movie][:title].capitalize
+    @movie.note = params[:movie][:note].capitalize
     @movie.user_id = current_user.id
     if @movie.save
       redirect_to root_path
