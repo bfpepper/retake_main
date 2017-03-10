@@ -8,7 +8,6 @@ class MoviesController < ApplicationController
   end
 
   def create
-    binding.pry
     @movie = Movie.new(movie_params)
     @movie.title = title = params[:movie][:title].split(" \\cc: ")[0].capitalize
     @movie.note = params[:movie][:note].capitalize
