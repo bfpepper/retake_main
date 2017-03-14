@@ -8,7 +8,6 @@ class MoviesController < ApplicationController
   end
 
   def create
-    binding.pry
     @movie = Movie.new(movie_params)
     @movie.user_id = current_user.id
     if @movie.title.include?("\\cc:") && @movie.save
