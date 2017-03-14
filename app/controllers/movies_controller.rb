@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
   end
 
   def create
+    binding.pry
     @movie = Movie.new(movie_params)
     @movie.user_id = current_user.id
     if @movie.title.include?("\\cc:") && @movie.save
@@ -19,6 +20,7 @@ class MoviesController < ApplicationController
     elsif @movie.save
       @movie.title = params[:movie][:title].capitalize
       @movie.note = params[:movie][:note].capitalize
+      @movie.save
       redirect_to root_path
     else
       render :file => 'public/404.html'
