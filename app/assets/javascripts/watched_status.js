@@ -13,11 +13,13 @@ function filterAlpha() {
   }).done(function(data){
     $('#movie-list').html('')
     for (var i = 0; i < data.length; i++) {
-      $('#movie-list').append('<tr class=' + data[i].watched + '><td class="movie-title">' + data[i].title + '</td>' +
+      $('#movie-list').append('<tr id=' + data[i].id + ' class=' + data[i].watched +
+                              '><td class="movie-title">' + data[i].title + '</td>' +
                               '<td class="movie-note">' + data[i].note + '</td>' +
                               '<td id=watched-' + data[i].id + '>' + data[i].watched + '</td>' +
                               '<td><a href="/movies/' + data[i].id + '/edit">Edit</a></td>' +
-                              '<td><button type="button" class="mark-watched" id=' + data[i].id + '>Mark as Watched</button></td>');
+                              '<td><button type="button" class="mark-watched" id=' + data[i].id +
+                              '>Mark as Watched</button></td>');
     }
   }).fail(function(error){
     console.error(err);
@@ -63,7 +65,7 @@ function getUnwatchedMovies() {
   });
 }
 function changeWatchedStatus() {
-  var movieId = $(this).parent().parent()[0].rowIndex
+  var movieId = $(this).parent().parent()[0].id
   var currentStatus = $( '#watched-' + movieId )[0].innerText
   var that = this
   if(currentStatus == "false"){

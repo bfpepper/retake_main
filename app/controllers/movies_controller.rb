@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
     elsif @movie.save
       @movie.title = params[:movie][:title].capitalize
       @movie.note = params[:movie][:note].capitalize
+      @movie.save
       redirect_to root_path
     else
       render :file => 'public/404.html'
