@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
       @movie.save
       redirect_to root_path
     else
-      render file: 'public/404.html'
+      handle_create_issues(params)
     end
   end
 
@@ -46,6 +46,13 @@ class MoviesController < ApplicationController
 
   def movie_params
     params.require(:movie).permit(:title, :note, :user_id, :watched)
+  end
+
+  def handle_create_issues(parmas)
+    if params[:movie][:title] == ''
+      redirect_to root_path
+      flash[:notice] = "Sorry, you need to have a title"
+    end
   end
 
 end
