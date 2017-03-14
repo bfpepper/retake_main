@@ -17,9 +17,9 @@ describe 'As a signed in user' do
 
       click_on("Sign In")
 
-      expect(page).to have_content("Log Out")
+      expect(page).to have_content("Sign Out")
 
-      click_on('Log Out')
+      click_on('Sign Out')
 
       expect(page).to have_content("Log In")
       expect(page).to have_content("Sign Up")
