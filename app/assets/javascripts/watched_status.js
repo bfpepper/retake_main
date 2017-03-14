@@ -68,25 +68,35 @@ function changeWatchedStatus() {
   var movieId = $(this).parent().parent()[0].id
   var currentStatus = $( '#watched-' + movieId )[0].innerText
   var that = this
+  var title = $(this).parent().parent().find('.movie-title').text()
+  var note = $(this).parent().parent().find('.movie-note').text()
   if(currentStatus == "false"){
-    changeButtonToWatched(movieId, that)
+    changeButtonToWatched(movieId, that, note, title)
   } else {
-    changeButtonToUnwatched(movieId, that)
+    changeButtonToUnwatched(movieId, that, note, title)
   }
 
   changeDbStatus(movieId, currentStatus)
 }
 
-function changeButtonToWatched(movieId, that) {
-  $(that)[0].innerText = "Mark as Unwatched"
-  $( '#watched-' + movieId )[0].innerText = "true"
-  $(that).parent().parent().removeClass('false').addClass('true')
+function changeButtonToWatched(movieId, that, note, title) {
+  $(that).parent().parent().html('')
+  $('#movie-list').append('<tr id=' + movieId +
+                          ' class=true><td class="movie-title">' + title +'</td>' +
+                          '<td class="movie-note">' + note + '</td>' +
+                          '<td id=watched-' + movieId + '>true</td>' +
+                          '<td><a href="/movies/' + movieId + '/edit">Edit</a></td>' +
+                          '<td><button type="button" class="mark-watched" id=' + movieId + '>Mark as Unwatched</button></td>')
 }
 
-function changeButtonToUnwatched(movieId, that) {
-  $(that)[0].innerText = "Mark as Watched"
-  $( '#watched-' + movieId )[0].innerText = "false"
-  $(that).parent().parent().removeClass('true').addClass('false')
+function changeButtonToUnwatched(movieId, that, note, title) {
+  $(that).parent().parent().html('')
+  $('#movie-list').append('<tr id=' + movieId +
+                          ' class=false><td class="movie-title">' + title +'</td>' +
+                          '<td class="movie-note">' + note + '</td>' +
+                          '<td id=watched-' + movieId + '>false</td>' +
+                          '<td><a href="/movies/' + movieId + '/edit">Edit</a></td>' +
+                          '<td><button type="button" class="mark-watched" id=' + movieId + '>Mark as Watched</button></td>')
 }
 
 function changeDbStatus(movieId, currentStatus) {

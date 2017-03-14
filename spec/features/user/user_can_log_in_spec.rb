@@ -55,5 +55,42 @@ describe 'As a registered user' do
 
       expect(current_path).to eq(login_path)
     end
+
+    scenario "I must enter a password" do
+
+      user = create(:user)
+
+      visit root_path
+
+      click_on("Log In")
+
+      expect(current_path).to eq(login_path)
+
+      fill_in :Email, with: user.email
+      fill_in :Password, with: nil
+
+      click_on("Sign In")
+
+      expect(current_path).to eq(login_path)
+
+    end
+    scenario "I must enter an email" do
+
+      user = create(:user)
+
+      visit root_path
+
+      click_on("Log In")
+
+      expect(current_path).to eq(login_path)
+
+      fill_in :Email, with: nil
+      fill_in :Password, with: user.password
+
+      click_on("Sign In")
+
+      expect(current_path).to eq(login_path)
+
+    end
   end
 end
