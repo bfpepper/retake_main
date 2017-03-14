@@ -7,7 +7,8 @@ class Api::V1::MoviesController < Api::V1::ApiController
   end
 
   def index
-    @movies = Movie.all.order('title')
+    binding.pry
+    @movies = Movie.where(user_id: current_user.id).order('title')
     render json: @movies
   end
 
