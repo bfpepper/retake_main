@@ -1,5 +1,6 @@
 $(document).ready(function(){
   $('#movie-list').on('click', '.mark-watched', changeWatchedStatus)
+  $('#movie-list').on('click', '.mark-unwatched', changeWatchedStatus)
   $('.search-watched').on('click', getWatchedMovies)
   $('.search-unwatched').on('click', getUnwatchedMovies)
   $('#movie-search').on('keyup', filterResults)
@@ -13,13 +14,19 @@ function filterAlpha() {
   }).done(function(data){
     $('#movie-list').html('')
     for (var i = 0; i < data.length; i++) {
+      var status = null
+      if(data[i].watched == false) {
+        status = 'watched'
+      } else {
+        status = "unwatched"
+      }
       $('#movie-list').append('<tr id=' + data[i].id + ' class=' + data[i].watched +
                               '><td class="movie-title">' + data[i].title + '</td>' +
                               '<td class="movie-note">' + data[i].note + '</td>' +
                               '<td id=watched-' + data[i].id + '>' + data[i].watched + '</td>' +
                               '<td><a href="/movies/' + data[i].id + '/edit">Edit</a></td>' +
-                              '<td><button type="button" class="mark-watched" id=' + data[i].id +
-                              '>Mark as Watched</button></td>');
+                              '<td><button type="button" class="mark-"' + data[i].watched +'id=' + data[i].id +
+                              '>Mark as ' + status +'</button></td>');
     }
   }).fail(function(error){
     console.error(err);
@@ -44,9 +51,9 @@ function filterResults(e) {
 }
 
 function getWatchedMovies() {
-  $('#movie-list').children().each(function() {
-    var readStatus = $(this).find(".mark-watched").html();
-    if (readStatus.includes("Mark as Unwatched")) {
+    $('#movie-list').children().children().each(function() {
+    var readStatus = $(this).siblings().siblings()[4].innerText;
+    if (readStatus.includes("Mark as unwatched")) {
       $(this).show()
     }  else {
       $(this).hide()
@@ -55,9 +62,9 @@ function getWatchedMovies() {
 }
 
 function getUnwatchedMovies() {
-  $('#movie-list').children().each(function() {
-    var readStatus = $(this).find(".mark-watched").html();
-    if (readStatus.includes("Mark as Watched")) {
+  $('#movie-list').children().children().each(function() {
+    var readStatus = $(this).siblings().siblings()[4].innerText;
+    if (readStatus.includes("Mark as watched")) {
       $(this).show()
     }  else {
       $(this).hide()
@@ -80,23 +87,23 @@ function changeWatchedStatus() {
 }
 
 function changeButtonToWatched(movieId, that, note, title) {
-  $(that).parent().parent().html('')
+  $(that).parent().parent().html(null)
   $('#movie-list').append('<tr id=' + movieId +
                           ' class=true><td class="movie-title">' + title +'</td>' +
                           '<td class="movie-note">' + note + '</td>' +
                           '<td id=watched-' + movieId + '>true</td>' +
                           '<td><a href="/movies/' + movieId + '/edit">Edit</a></td>' +
-                          '<td><button type="button" class="mark-unwatched" id=' + movieId + '>Mark as Unwatched</button></td>')
+                          '<td><button type="button" class="mark-unwatched" id=' + movieId + '>Mark as unwatched</button></td>')
 }
 
 function changeButtonToUnwatched(movieId, that, note, title) {
-  $(that).parent().parent().html('')
+  $(that).parent().parent().html(null)
   $('#movie-list').append('<tr id=' + movieId +
                           ' class=false><td class="movie-title">' + title +'</td>' +
                           '<td class="movie-note">' + note + '</td>' +
                           '<td id=watched-' + movieId + '>false</td>' +
                           '<td><a href="/movies/' + movieId + '/edit">Edit</a></td>' +
-                          '<td><button type="button" class="mark-watched" id=' + movieId + '>Mark as Watched</button></td>')
+                          '<td><button type="button" class="mark-watched" id=' + movieId + '>Mark as watched</button></td>')
 }
 
 function changeDbStatus(movieId, currentStatus) {
