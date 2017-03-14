@@ -49,6 +49,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'poltergeist'
+  gem 'simplecov', require: false
 end
 
 group :development do

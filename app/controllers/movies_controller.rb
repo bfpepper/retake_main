@@ -13,8 +13,9 @@ class MoviesController < ApplicationController
     if @movie.title.include?("\\cc:") && @movie.save
       @movie.title = params[:movie][:title].split(" \\cc: ")[0].capitalize
       @movie.note = params[:movie][:note].capitalize
+      @movie.save
       email = params[:movie][:title].split(" \\cc: ")[1]
-      MovieNotifierMailer.movie_email(email, title).deliver_now
+      MovieNotifierMailer.movie_email(email, @movie.title).deliver_now
       redirect_to root_path
     elsif @movie.save
       @movie.title = params[:movie][:title].capitalize
