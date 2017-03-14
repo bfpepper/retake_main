@@ -14,6 +14,6 @@ You will need:
 ### Set up
 1. Clone down the repo: `git clone https://github.com/bfpepper/retake_main`
 2. cd into the repo: `retake_main`
-3. Run bundle install to pull down all the necessary gems.
-4. Assuming everything bundled properly, run rake db:setup.
-5. Once the migrations complete, run rspec to make sure everything is all ready to go.
+3. Run `bundle install` to pull down all the necessary gems.
+4. Assuming everything bundled properly, run `rake db:setup`.
+5. Once the migrations complete, run `rspec` to make sure everything is all ready to go.
