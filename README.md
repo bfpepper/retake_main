@@ -1,6 +1,6 @@
 # README for MyMovieVault
 
-![screen](http://i.imgur.com/kVwp9cJ.png)
+![screen](http://i.imgur.com/6L2f1Wg.png)
 
 This is a simple movie tracking app. A given user can create an account and then add movies they may be interested in watching later. They can filter but watched/unwatched, and title/note.
 
