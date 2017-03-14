@@ -1,3 +1,4 @@
+<div class="container">
 <% if current_user %>
   <%= form_for @movie do |f| %>
     <%= f.label :title %>
@@ -6,14 +7,19 @@
     <%= f.text_field :note %>
     <%= f.submit %>
   <% end %>
+</br>
 
-<button type='button' class='search-watched'>Search for all watched movies</button></br>
-<button type='button' class='search-unwatched'>Search for all unwatched movies</button></br>
+<button type='button' class='search-watched btn btn-success'>Search for all watched movies</button></br>
+</br>
+<button type='button' class='search-unwatched btn btn-danger'>Search for all unwatched movies</button></br>
+</br>
 <input type="text" id="movie-search" placeholder="Search for movies..." /></br>
-<button type='button' class='search-alpha'>Sort movies alpha</button></br>
+</br>
+<button type='button' class='search-alpha btn btn-info'>Sort movies alpha</button></br>
+</br>
 
-<table class="movie-table">
-  <thead>
+<table class="movie-table table-bordered">
+  <thead class="thead-inverse">
     <tr>
       <th>Title</th>
       <th>Note</th>
@@ -31,11 +37,12 @@
         <td id=<%= "watched-#{movie.id}" %>><%= movie.watched %></td>
         <td><%= link_to "Edit", edit_movie_path(movie) %></td>
         <% if movie.watched == false %>
-          <td><button type="button" class="mark-watched" id=<%= "#{movie.id}" %>>Mark as watched</button></td></tr>
+          <td><button type="button" class="mark-watched btn btn-warning" id=<%= "#{movie.id}" %>>Mark as watched</button></td></tr>
         <% else %>
-          <td><button type="button" class="mark-unwatched" id=<%= "#{movie.id}" %>>Mark as unwatched</button></td></tr>
+          <td><button type="button" class="mark-unwatched btn btn-primary" id=<%= "#{movie.id}" %>>Mark as unwatched</button></td></tr>
         <% end %>
       <% end %>
     <% end %>
   </tbody>
 </table>
+</div>
