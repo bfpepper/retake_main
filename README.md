@@ -17,3 +17,7 @@ You will need:
 3. Run `bundle install` to pull down all the necessary gems.
 4. Assuming everything bundled properly, run `rake db:setup`.
 5. Once the migrations complete, run `rspec` to make sure everything is all ready to go.
+
+### Running the app
+* You can run it locally once you run through the set up above by running `rails s`
+* You can also visit the deployed app at https://calm-mountain-20892.herokuapp.com/
