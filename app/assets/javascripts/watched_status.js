@@ -86,7 +86,7 @@ function changeButtonToWatched(movieId, that, note, title) {
                           '<td class="movie-note">' + note + '</td>' +
                           '<td id=watched-' + movieId + '>true</td>' +
                           '<td><a href="/movies/' + movieId + '/edit">Edit</a></td>' +
-                          '<td><button type="button" class="mark-watched" id=' + movieId + '>Mark as Unwatched</button></td>')
+                          '<td><button type="button" class="mark-unwatched" id=' + movieId + '>Mark as Unwatched</button></td>')
 }
 
 function changeButtonToUnwatched(movieId, that, note, title) {
