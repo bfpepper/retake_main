@@ -26,7 +26,7 @@
   <tbody id='movie-list'>
     <% if @movies %>
       <% @movies.each do |movie| %>
-        <tr id=<%= movie.id %> class=<%= color_output(movie.watched) %>><td class='movie-title'><%= movie.title %></td>
+        <tr id='<%= movie.id %>' class='<%= movie.watched %>' ><td class='movie-title'><%= movie.title %></td>
         <td class='movie-note'><%= movie.note %></td>
         <td id=<%= "watched-#{movie.id}" %>><%= movie.watched %></td>
         <td><%= link_to "Edit", edit_movie_path(movie) %></td>
