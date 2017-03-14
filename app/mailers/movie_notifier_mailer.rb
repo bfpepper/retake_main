@@ -1,5 +1,5 @@
 class MovieNotifierMailer < ApplicationMailer
-  default from: 'any_from_address@example.com'
+  default from: 'any_from_address@this.com'
 
   def movie_email(email, title)
     @title = title

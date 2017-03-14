@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
       @movie.save
       redirect_to root_path
     else
-      render :file => 'public/404.html'
+      render file: 'public/404.html'
     end
   end
 
